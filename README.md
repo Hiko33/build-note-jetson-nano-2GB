@@ -37,21 +37,21 @@ PWは10桁以上を推奨<br>
 ### ・tightvcnserverのインストール
 プリインストールのVNCサーバーが遅いための解決策<br>
 
-	sudo apt install tightvncserver -y<br>
-	sudo apt autoremove　（必須でない）<br>
+	sudo apt install tightvncserver -y
+	sudo apt autoremove　（必須でない）
 VNCを起動<br>
 
-	tightvncserver -geometry 1920x1080<br>
+	tightvncserver -geometry 1920x1080
 パスワードを求められるので入力（8文字まで）<br>
 
-	view only　〜　はnoでいい<br>
+	view only　〜　はnoでいい
 VNC viewerから
 
-	<user>@<host>.local:1 で接続できることを確認<br>
+	<username>@<host>.local:1 で接続できることを確認
 この時点ではデスクトップが立ち上がらず、NVIDIAマークが表示される状態で止まる<br>
 VNC自動起動用設定<br>
 
-	sudo crontab -e<br>
+	sudo crontab -e
 末尾に以下のコマンドを追加（解像度は適宜調整）<br>
 
 	@reboot su - <user> -c '/usr/bin/tightvncserver -geometry 1920x1080'
@@ -74,13 +74,13 @@ VNC自動起動用設定<br>
 	sudo visudo　→エディタ開く
 一番下の行に以下のように入力<br>
 
-	{ユーザー名} ALL=(ALL) NOPASSWD: ALL<br>
+	<username> ALL=(ALL) NOPASSWD: ALL
 
 ### ・Dockerをsudoなしで立ち上げられる設定にする
 	sudo gpasswd -a $USER docker
 （確認方法）<br>
 
-	groups <user>
+	groups <username>
 
 ### ・Jetson GPIO Libraryパッケージの導入
 	git clone https://github.com/NVIDIA/jetson-gpio.git
@@ -114,6 +114,6 @@ linux版は下記の手順でインストール(公式より）<br>
 
 	sudo apt-get update
 	sudo apt-get install sublime-text
-・起動するとライセンス情報を要求されるため、ライセンス情報を送られたメールが入っているPCからコピーしたテキスト情報を全部ペースト（ライセンス情報はテキストにコピペし、sftｐで送付（下記のsubl_licenseはそのファイル名）<br>
+・起動するとライセンス情報を要求されるため、ライセンス購入時に送られたメールからコピーしたライセンス（テキスト）情報をペースト（ライセンス情報はテキストファイルにコピペし、sftpで送付（下記のsubl_licenseがテキストファイル名になる）<br>
 
-	(PCから）sftp put subl_license
+	(ファイルがある端末からsftp接続後）sftp put subl_license
