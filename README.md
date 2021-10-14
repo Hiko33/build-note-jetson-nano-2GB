@@ -30,12 +30,13 @@ PWは10桁以上を推奨<br>
 	sudo reboot
 
 	jtop
-→jtop実行後に<br>
-[WARN] jetson-stats not supported for [L4T 32.5.2]　の<br>
-メッセージが出る件については調査中<br>
+→ jtop 実行後に<br>
+
+	[WARN] jetson-stats not supported for [L4T 32.5.2]
+のメッセージが出る件について確認中<br>
 
 ### ・tightvcnserverのインストール
-プリインストールのVNCサーバーが遅いための解決策<br>
+プリインストールのVNCサーバーが遅いための解決策（ベストソリューションか自信なし）<br>
 
 	sudo apt install tightvncserver -y
 	sudo apt autoremove　（必須でない）
@@ -48,11 +49,11 @@ VNCを起動<br>
 VNC viewerから
 
 	<username>@<host>.local:1 で接続できることを確認
-この時点ではデスクトップが立ち上がらず、NVIDIAマークが表示される状態で止まる<br>
+この時点ではデスクトップが立ち上がらず、画面いっぱいにNVIDIAマークが表示される状態で止まる<br>
 VNC自動起動用設定<br>
 
 	sudo crontab -e
-末尾に以下のコマンドを追加（解像度は適宜調整）<br>
+末尾に以下のコマンドを追加（解像度は任意）<br>
 
 	@reboot su - <user> -c '/usr/bin/tightvncserver -geometry 1920x1080'
 デスクトップを表示される設定を下記ファイル<br>
@@ -92,11 +93,11 @@ VNC自動起動用設定<br>
 	sudo udevadm control —reload-rules && sudo udevadm trigger
 反映のため再起動<br>
 
-### ・nanoエディタインストール（必須でない）
-sudo apt install nano<br>
+### ・nanoエディタインストール（必須でない、vimユーザなら不要）
+	sudo apt install nano
 
 ### ・sublimeインストール（ライセンス保持者向け、必須でない）
-linux版は下記の手順でインストール(公式より）<br>
+linux版(apt使用）は下記の手順でインストール([公式](https://www.sublimetext.com/docs/linux_repositories.html#apt)より）<br>
 ・GPGキーのインストール<br>
 
 	wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add - 
