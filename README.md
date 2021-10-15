@@ -93,6 +93,15 @@ VNC自動起動用設定<br>
 	sudo udevadm control —reload-rules && sudo udevadm trigger
 反映のため再起動<br>
 
+### ・bashのカスタマイズ→以下のコードを .bashrc に追加（任意）
+	# Like a Mac
+	alias pbcopy='xclip -selection clipboard'
+	alias pbpaste='xclip -selection clipboard -o'
+	alias open='xdg-open'
+
+	# Show git status
+	export PS1='\[\033[01;34m\]\w\[\033[01;31m\]$(__git_ps1)\[\033[01;00m\]\$ '
+
 ### ・nanoエディタインストール（必須でない、vimユーザなら不要）
 	sudo apt install nano
 
