@@ -95,6 +95,7 @@ VNC自動起動用設定<br>
 
 ### ・bashのカスタマイズ→以下のコードを .bashrc に追加（任意）
 	# Like a Mac
+	# xclip を事前にインストール（sudo apt-get install xclip -y)
 	alias pbcopy='xclip -selection clipboard'
 	alias pbpaste='xclip -selection clipboard -o'
 	alias open='xdg-open'
@@ -127,3 +128,28 @@ linux版(apt使用）は下記の手順でインストール([公式](https://ww
 ・起動するとライセンス情報を要求されるため、ライセンス購入時に送られたメールからコピーしたライセンス（テキスト）情報をペースト（ライセンス情報はテキストファイルにコピペし、sftpで送付（下記のsubl_licenseがテキストファイル名になる）<br>
 
 	(ファイルがある端末からsftp接続後）sftp put subl_license
+
+### ・SSHキー作成（Github接続用）
+	ssh-keygen -t ed25519 -C "<email>"
+	eval "$(ssh-agent -s)"
+SSH config を編集<br>
+
+	subl ~/.ssh/config
+Configファイルに以下を記述<br>
+
+	Host *	
+	  AddKeysToAgent yes
+	  # UseKeychain yes (mac用)
+	  IdentityFile ~/.ssh/<key>
+公開鍵をコピー<br>
+
+	pbcopy < ~/.ssh/<pub_key>.pub
+Gitbubに公開鍵を登録する<br>
+ブラウザからGithubのマイページにいく<br>
+
+	https://github.com/<my-account>
+
+右上のアイコンから Settings → SSH and GPG keys へ<br>
+New SSH key をクリックし、key の中に先ほどコピーした公開鍵情報をペーストし、Titleを記述し、Add SSH keyをクリックして登録する
+
+
